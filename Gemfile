@@ -5,7 +5,9 @@ gem 'rails', '4.0.4'
 
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
-gem 'pg'
+# gem 'pg'
+# Use mysql as the database for Active Record
+gem 'mysql2'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
@@ -33,6 +35,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'rake', '~> 10.3.1'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -48,4 +51,4 @@ end
 # Server-rendering isn't in an official version yet, let's grab it off master
 gem 'react-rails', :git => 'git://github.com/reactjs/react-rails.git', :ref => 'c09a0c6522301db7cb2bcea6673aa349298847f2'
 
-gem 'rails_12factor', group: :production
+# gem 'rails_12factor', group: :production
