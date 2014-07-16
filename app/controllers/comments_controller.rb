@@ -39,13 +39,16 @@ class CommentsController < ApplicationController
 
     
   def update
+      params.require(:comment).permit!
       @comment = Comment.find(params[:id])
-      if @comment.update_attributes(comment_params)
+      @comment.author = params[:comment][:author]
+      @comment.text = params[:comment][:text]
+      if @comment.save
         flash[:notice] = "Comment updated successfully."
-        redirect_to(:action => 'show' , :id => @comment.id)
+        render json: "ok"
       else
-        @subject_count = Subject.count
-        render('edit')
+        #@subject_count = Subject.count
+        render json: @comment.errors.full_messages
       end
     end
         

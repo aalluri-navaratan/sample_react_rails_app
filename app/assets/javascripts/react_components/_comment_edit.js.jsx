@@ -4,27 +4,26 @@ var CommentEdit = React.createClass({
  
  
   handleCommentSubmit: function (event) {
-    // var id = this.state.comments
-    // var author = this.refs.author.getDOMNode().value.trim()
-    // var text = this.refs.text.getDOMNode().value
-    var comment = this.state.comments;
-    alert(comment);
-    var newComment = comment.concat([comments])
-    alert(newComment);
-    this.setState({comments: newComment});
+     var id = this.state.comments
+     this.state.comments.author = this.refs.author.getDOMNode().value.trim()
+     this.state.comments.text = this.refs.text.getDOMNode().value.trim()
+    // var comment = this.state.comments;
+    // alert(comment);
+    // var newComment = comment.concat([comments])
+    // alert(newComment);
+    // this.setState({comments: newComment});
     alert(this.state.comments.author);
-    //alert(author);
+    alert(this.state.comments.text);
+    // //alert(author);
     //alert(text);
-    // $.ajax({
-    //   type: 'PUT',
-    //   url: this.props.url,
-    //   data: {id: id, author: author, text: text, csrf_token: this.state.form.csrf_param},
-    //   dataType : html,
-    //     success: function(){
-
-        //window.location.href='http://localhost:3000/comments/'+this.state.comments.id;
-    //     }
-    // });
+    $.ajax({
+      type: 'PUT',
+      url: '/comments/'+this.state.comments.id,
+      data: {comment:{author: this.state.comments.author, text: this.state.comments.text }},
+        success: function(){
+          alert('success');
+        }
+    });
   },
   getInitialState: function () {
      return JSON.parse(this.props.presenter);
