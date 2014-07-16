@@ -4,11 +4,17 @@ var CommentEdit = React.createClass({
  
  
   handleCommentSubmit: function (event) {
-    var id = this.state.comments
-    var author = this.refs.author.getDOMNode().value.trim()
-    var text = this.refs.text.getDOMNode().value
-    alert(author);
-    alert(text);
+    // var id = this.state.comments
+    // var author = this.refs.author.getDOMNode().value.trim()
+    // var text = this.refs.text.getDOMNode().value
+    var comment = this.state.comments;
+    alert(comment);
+    var newComment = comment.concat([comments])
+    alert(newComment);
+    this.setState({comments: newComment});
+    alert(this.state.comments.author);
+    //alert(author);
+    //alert(text);
     // $.ajax({
     //   type: 'PUT',
     //   url: this.props.url,
@@ -16,7 +22,7 @@ var CommentEdit = React.createClass({
     //   dataType : html,
     //     success: function(){
 
-        window.location.href='http://localhost:3000/comments/1/';
+        //window.location.href='http://localhost:3000/comments/'+this.state.comments.id;
     //     }
     // });
   },

@@ -33,6 +33,10 @@ var CommentIndex = React.createClass({
 
 var CommentRow =
     React.createClass({
+      handleAdd:function(e){
+       // alert(this.props.data.id);
+        window.location.href = 'http://localhost:3000/comments/new';
+      },
       handleShow:function(e){
      
         alert(this.props.data.id)
@@ -70,7 +74,7 @@ var CommentRow =
                         <td>{this.props.data.author}</td>
                         <td>{this.props.data.text}</td>
                     
-                   
+                    <td><button onClick={this.handleAdd}>Add</button></td>
                     <td><button onClick={this.handleShow}>Show</button></td>
                     <td><button onClick={this.handleEdit} >Edit</button></td>
                     <td><button onClick={this.handleDestroy} >Delete</button></td>
