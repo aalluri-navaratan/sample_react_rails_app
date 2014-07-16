@@ -1,30 +1,48 @@
 /** @jsx React.DOM */
 
 var CommentBox = React.createClass({
-  getInitialState: function () {
-    return JSON.parse(this.props.presenter);
-  },
-
-  handleCommentSubmit: function ( formData, action ) {
+  loadCommentsFromServer: function() {
     $.ajax({
-      data: formData,
-      url: action,
-      type: "POST",
-      dataType: "json",
-      success: function ( data ) {
-        this.setState({ comments: data });
+      url: this.props.url,
+      dataType: 'json',
+      success: function(data) {
+        this.setState({data: data});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
       }.bind(this)
     });
   },
-
-  render: function () {
+  handleCommentSubmit: function(comment) {
+    var comments = this.state.data;
+    var newComments = comments.concat([comment]);
+    this.setState({data: newComments});
+    $.ajax({
+      url: this.props.url,
+      dataType: 'json',
+      type: 'POST',
+      data: comment,
+      success: function(data) {
+        this.setState({data: data});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
+  },
+  getInitialState: function() {
+    return {data: []};
+  },
+  componentWillMount: function() {
+    this.loadCommentsFromServer();
+    setInterval(this.loadCommentsFromServer, this.props.pollInterval);
+  },
+  render: function() {
     return (
-      <div className="comment-box">
-        <img src={ this.props.imgSrc } alt={ this.props.imgAlt } />
-        <CommentList comments={ this.state.comments } />
-        <hr />
-        <h2>Add a comment:</h2>
-        <CommentForm form={ this.state.form } onCommentSubmit={ this.handleCommentSubmit } />
+      <div className="commentBox">
+        <h1>Comments</h1>
+        <CommentList data={this.state.data} />
+        <CommentForm onCommentSubmit={this.handleCommentSubmit} />
       </div>
     );
   }
