@@ -11,10 +11,10 @@ var CommentIndex = React.createClass({
             <div>
                 <table>
                   <tr>
-                    <th>sno</th>
-                    <th>name</th>
-                    <th>comment</th>
-                    <th>Actions</th>
+                    <th>sno&nbsp;</th>
+                    <th>&nbsp;name&nbsp;</th>
+                    <th>&nbsp;comment&nbsp;</th>
+                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Actions</th>
 
                   </tr>
                   <tbody>
@@ -41,11 +41,8 @@ var CommentRow =
                         <td>{this.props.data.id}</td>
                         <td>{this.props.data.author}</td>
                         <td>{this.props.data.text}</td>
-                        <td><a href={'/comments/show/'+this.props.data.id}>Show</a></td>&nbsp;
-                        <td><a href={'/comments/edit/'+this.props.data.id}>Edit</a></td>&nbsp;
-                        <td><a href={'/comments/delete/'+this.props.data.id}>Delete</a></td>
-                        
-                        
+                        <td><a href={'/comments/show/'+this.props.data.id}>Show</a></td><td><a href={'/comments/edit/'+this.props.data.id}>Edit&nbsp;&nbsp;</a></td>
+                        <td><a href={'/comments/delete/'+this.props.data.id}>&nbsp;&nbsp;&nbsp;Delete</a></td>
                   </tr>
                     
             )
