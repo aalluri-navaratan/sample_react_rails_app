@@ -22,6 +22,18 @@ class CommentsController < ApplicationController
         }
     }
   end
+
+  def new
+   @presenter = {
+        :comments => Comment.new,
+        :form => {
+          :action => comments_path,
+          :csrf_param => request_forgery_protection_token,
+          :csrf_token => form_authenticity_token
+        }
+    }
+     
+  end
   
   def edit
     
@@ -36,8 +48,13 @@ class CommentsController < ApplicationController
     
   end
 
-
+ #params.require(:comment).permit!
+      #@comment = Comment.find(params[:id])
+     # @comment.author = params[:comment][:author]
+     # @comment.text = params[:comment][:text]
+     
     
+  
   def update
       params.require(:comment).permit!
       @comment = Comment.find(params[:id])
@@ -51,20 +68,24 @@ class CommentsController < ApplicationController
         render json: @comment.errors.full_messages
       end
     end
+      #   #flash[:notice] = "Comment updated successfully."
+      #   if request.xhr?
+      #     render :json => "Saved the commnet"
+      #   else
+      #     redirect_to comments_path
+      #   end
+      # #render  json: "save ok"
+      # #render comments_path
+      # else
+      #   #@subject_count = Subject.count
+      #   render json: @comment.errors.full_messages
+      # end
+
+   # end
         
 
 
-  def new
-   @presenter = {
-        :comments => Comment.new,
-        :form => {
-          :action => comments_path,
-          :csrf_param => request_forgery_protection_token,
-          :csrf_token => form_authenticity_token
-        }
-    }
-     
-  end
+  
 
   def create
 
