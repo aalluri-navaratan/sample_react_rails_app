@@ -25,7 +25,7 @@ var CommentIndex = React.createClass({
                         })}
                   </tbody>    
                 </table>
-
+                <td><a href={'/comments/new/'}>Add</a></td>
             </div>
             )
          }
@@ -33,21 +33,7 @@ var CommentIndex = React.createClass({
 
 var CommentRow =
     React.createClass({
-      handleAdd:function(e){
-      window.location.href = 'http://localhost:3000/comments/new/';
-      },
-      handleShow:function(e){
-      window.location.href = 'http://localhost:3000/comments/show/'+this.props.data.id;
-      },
-           
-      handleEdit:function(id){
-      window.location.href = 'http://localhost:3000/comments/edit/'+this.props.data.id;
-      } ,
-      
-      handleDestroy:function(e){
-      window.location.href = 'http://localhost:3000/comments/delete/'+this.props.data.id;
-      },
-      
+          
       render:function(){
         return (
                     <tr key={0}>
@@ -55,10 +41,10 @@ var CommentRow =
                         <td>{this.props.data.id}</td>
                         <td>{this.props.data.author}</td>
                         <td>{this.props.data.text}</td>
-                        <td><button onClick={this.handleAdd}>Add</button></td>
-                        <td><button onClick={this.handleShow}>Show</button></td>
-                        <td><button onClick={this.handleEdit} >Edit</button></td>
-                        <td><button onClick={this.handleDestroy} >Delete</button></td>
+                        <td><a href={'/comments/show/'+this.props.data.id}>Show</a></td>&nbsp;
+                        <td><a href={'/comments/edit/'+this.props.data.id}>Edit</a></td>&nbsp;
+                        <td><a href={'/comments/delete/'+this.props.data.id}>Delete</a></td>
+                        
                         
                   </tr>
                     
